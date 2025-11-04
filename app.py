@@ -106,21 +106,18 @@ def investor_details(investor):
 
     #YEAR ON YEAR INVESTMENT
 
-    # 'year' column is already available in investor_df
     year_series = df.groupby('year')['amount'].sum()
 
     if year_series.empty:
         st.write("No year-on-year data found.")
     else:
-        # BUG FIX: Use a new figure and axis name (fig5, ax5)
-        # Your old code was plotting on 'ax3' and calling 'ax2.axis('equal')'
+     
         fig5, ax5 = plt.subplots(figsize=(8, 6))
         ax5.plot(year_series.index, year_series.values, marker='o')
         ax5.set_xlabel("Year")
         ax5.set_ylabel("Amount Invested (Cr)")
-        st.pyplot(fig5)  # This was the line you were missing
+        st.pyplot(fig5)  
 
-#give them menu on side bar
 st.sidebar.header('Menu')
 option =st.sidebar.selectbox('Whats you need ?',['Overall Data Visualization','Startup','Investors'])
 
